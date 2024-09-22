@@ -18,10 +18,9 @@ This project demonstrates a **Spring Boot** application that dynamically routes 
 
 ## Project Structure
 
-- `com.example.demo.FooDbConfig.java`: Contains configuration for db1 and EntityManager setup. It is the default database.
-- `com.example.demo.BarDbConfig.java`: Contains configuration for db2 and EntityManager setup.
-- `com.example.demo.webRoute`: Entity and repository for `db1`.
-- `com.example.demo.bloodGroup`: Entity and repository for `db2`.
+- `com.example.demo.configuration.`: Contains configurations for multiple DataSources and EntityManager setup.
+- `com.example.demo.dataSourceOne`: Entity and repository for `db1`.
+- `com.example.demo.dataSourceTwo`: Entity and repository for `db2`.
 
 ## Prerequisites
 
@@ -33,10 +32,10 @@ This project demonstrates a **Spring Boot** application that dynamically routes 
  
 Configure database (`db1` and `db2`) in `application.properties` file.
 
-- `spring.datasource.jdbc-url=jdbc:mysql://*:3306/*`
-- `spring.datasource.username=*`
-- `spring.datasource.password=*`
-- `spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver`
+- `spring.datasource.db1.jdbc-url=jdbc:mysql://*:3306/*`
+- `spring.datasource.db1.username=*`
+- `spring.datasource.db1.password=*`
+- `spring.datasource.db1.driver-class-name=com.mysql.cj.jdbc.Driver`
 ####
 - `spring.datasource.db2.jdbc-url=jdbc:mysql://*:3306/*`
 - `spring.datasource.db2.username=*`
@@ -57,12 +56,13 @@ Configure database (`db1` and `db2`) in `application.properties` file.
 - `mvn spring-boot:run`
 
 ### Test API endpoints
-- GET /webRoute: Fetch web route data from db1
-- GET /bloodGroup: Fetch blood group list from db2
+- GET /api/dataSourceOne/webRoute: Fetch WebRouteTable list from db1
+- GET /api/dataSourceTwo/bloodGroup: Fetch BloodGroup list from db2
 
 ## Troubleshooting
 ### Common Errors
-Upcoming
+- **EntityManagerFactory Not Found:** Ensure you have the correct EntityManagerFactory and TransactionManager configuration for each DataSource.
+- **Database Connection Issues:** Ensure that your MySQL databases are running and that the connection details in the application.yml or application.properties file are correct.
 
 ## Contributing
 

@@ -1,4 +1,4 @@
-package com.example.demo.bloodGroup;
+package com.example.demo.dataSourceTwo.bloodGroup;
 
 import jakarta.persistence.*;
 import lombok.*;

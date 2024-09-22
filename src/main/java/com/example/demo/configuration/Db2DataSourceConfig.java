@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.configuration;
 
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -7,7 +7,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,38 +18,33 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactory",
-        basePackages = { "com.example.demo.webRoute" }
+        entityManagerFactoryRef = "db2EntityManagerFactory",
+        transactionManagerRef = "db2TransactionManager",
+        basePackages = { "com.example.demo.dataSourceTwo" } // Repositories for db2
 )
-public class FooDbConfig {
+public class Db2DataSourceConfig {
 
-    @Primary
-    @Bean(name = "dataSource")
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
+    @Bean(name = "db2DataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.db2")
+    public DataSource db2DataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
-    @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean
-    entityManagerFactory(
+    @Bean(name = "db2EntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean db2EntityManagerFactory(
             EntityManagerFactoryBuilder builder,
-            @Qualifier("dataSource") DataSource dataSource
-    ) {
+            @Qualifier("db2DataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("com.example.demo.webRoute")
-                .persistenceUnit("db1")
+                .packages("com.example.demo.dataSourceTwo") // Entities for db2
+                .persistenceUnit("db2")
                 .build();
     }
 
-    @Primary
-    @Bean(name = "transactionManager")
-    public PlatformTransactionManager transactionManager(
-            @Qualifier("entityManagerFactory") EntityManagerFactory
-                    entityManagerFactory
-    ) {
+    @Bean(name = "db2TransactionManager")
+    public PlatformTransactionManager db2TransactionManager(
+            @Qualifier("db2EntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
+
 }

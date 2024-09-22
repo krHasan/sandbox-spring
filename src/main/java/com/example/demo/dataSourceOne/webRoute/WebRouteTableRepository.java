@@ -1,4 +1,4 @@
-package com.example.demo.webRoute;
+package com.example.demo.dataSourceOne.webRoute;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,8 +1,6 @@
-package com.example.demo.bloodGroup;
+package com.example.demo.dataSourceTwo.bloodGroup;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface BloodGroupRepository extends JpaRepository<BloodGroup, Long> {
 }

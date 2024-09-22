@@ -1,4 +1,4 @@
-package com.example.demo.webRoute;
+package com.example.demo.dataSourceOne.webRoute;
 
 import jakarta.persistence.*;
 import lombok.*;
