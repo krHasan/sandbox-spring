@@ -32,12 +32,12 @@ This project demonstrates a **Spring Boot** application that dynamically routes 
  
 Configure database (`db1` and `db2`) in `application.properties` file.
 
-- `spring.datasource.db1.jdbc-url=jdbc:mysql://*:3306/*`
+- `spring.datasource.db1.jdbc-url=*`
 - `spring.datasource.db1.username=*`
 - `spring.datasource.db1.password=*`
 - `spring.datasource.db1.driver-class-name=com.mysql.cj.jdbc.Driver`
 ####
-- `spring.datasource.db2.jdbc-url=jdbc:mysql://*:3306/*`
+- `spring.datasource.db2.jdbc-url=*`
 - `spring.datasource.db2.username=*`
 - `spring.datasource.db2.password=*`
 - `spring.datasource.db2.driver-class-name=com.mysql.cj.jdbc.Driver`
@@ -61,8 +61,8 @@ Configure database (`db1` and `db2`) in `application.properties` file.
 
 ## Troubleshooting
 ### Common Errors
-- **EntityManagerFactory Not Found:** Ensure you have the correct EntityManagerFactory and TransactionManager configuration for each DataSource.
-- **Database Connection Issues:** Ensure that your MySQL databases are running and that the connection details in the application.yml or application.properties file are correct.
+- **EntityManagerFactory Not Found:** Ensure you have the correct `EntityManagerFactory` and `TransactionManager` configuration for each DataSource.
+- **Database Connection Issues:** Ensure that your MySQL databases are running and that the connection details in the `application.properties` file are correct.
 
 ## Contributing
 
